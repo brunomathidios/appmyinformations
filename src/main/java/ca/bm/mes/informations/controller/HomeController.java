@@ -18,13 +18,10 @@ public class HomeController {
 		model.addAttribute("navegador", userAgent.getBrowser().getName());
 		model.addAttribute("versao", userAgent.getBrowserVersion().getVersion());
 		
-		model.addAttribute("ip", request.getHeader("Host"));//X-Forwarded-For
+		model.addAttribute("ip", request.getHeader("Client-IP"));
 		
 		model.addAttribute("os", userAgent.getOperatingSystem().getName());
 		model.addAttribute("dispositivo", userAgent.getOperatingSystem().getDeviceType().getName());
-		model.addAttribute("marca", userAgent.getOperatingSystem().getManufacturer().getName());
-		model.addAttribute("grupo", userAgent.getOperatingSystem().getGroup().getName());
-		
 		
 		return "home";
 	}
