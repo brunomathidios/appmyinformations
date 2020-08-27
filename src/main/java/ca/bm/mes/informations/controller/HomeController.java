@@ -14,13 +14,12 @@ public class HomeController {
 	@GetMapping
 	public String home(HttpServletRequest request, Model model) {
 		
-		String host = request.getHeader("Host");
-		System.out.println(host);
-		model.addAttribute("host", host);
-		
 		UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));
 		model.addAttribute("navegador", userAgent.getBrowser().getName());
 		model.addAttribute("versao", userAgent.getBrowserVersion().getVersion());
+		
+		model.addAttribute("ip", request.getHeader("Host"));//X-Forwarded-For
+		
 		model.addAttribute("os", userAgent.getOperatingSystem().getName());
 		model.addAttribute("dispositivo", userAgent.getOperatingSystem().getDeviceType().getName());
 		model.addAttribute("marca", userAgent.getOperatingSystem().getManufacturer().getName());
